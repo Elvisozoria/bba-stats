@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team_home: one
+  team_away: one
+  date: 2024-09-15 13:30:10
+  youtube_link: MyString
+  technical_manager: one
+  anotador: one
+
+two:
+  team_home: two
+  team_away: two
+  date: 2024-09-15 13:30:10
+  youtube_link: MyString
+  technical_manager: two
+  anotador: two
