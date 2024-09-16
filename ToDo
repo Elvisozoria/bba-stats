@@ -1,0 +1,15 @@
+- Configurar Active Storage en el Frontend
+- active storage con s3
+- notificaciones para todos los jugadores
+- agregar acciones
+- agregar secciones de la cancha
+- usar serializer?
+- configurar smtp 
+
+4.3. Desarrollo del Frontend (React)
+
+
+---- hechas
+- confiurar reglas de pudin para otros modelos (solo hice match)
+- configurar controladores para otros recursos (solo hice teams)
+- eliminar uso de sesiones con devise
