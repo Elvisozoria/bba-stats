@@ -1,0 +1,405 @@
+/* root container */
+#root{
+  padding: 0 1em;
+}
+
+/* top menu */
+.menu-container {
+  text-align: center;
+}
+.menu-container ul{
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+}
+
+.menu-container ul li{
+  list-style: none;
+}
+.menu-container ul li a{
+  color: black;
+  text-decoration: none;
+}
+.menu-container ul li a:hover{
+  text-decoration: underline;
+}
+/* Login */
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container form div {
+  margin-bottom: 15px;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #218838;
+}
+
+
+/* Dashboard */
+
+/* src/App.css */
+.dashboard-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboard-container nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard-container nav li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.dashboard-container nav a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.dashboard-container nav a:hover {
+  text-decoration: underline;
+}
+
+
+/* Teams */
+
+/* src/App.css */
+.teams-container {
+  padding: 20px;
+}
+
+.teams-container form {
+  margin-bottom: 30px;
+}
+
+.teams-container form div {
+  margin-bottom: 15px;
+}
+
+.teams-container form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.teams-container form input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.teams-container button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.teams-container button:hover {
+  background-color: #0056b3;
+}
+
+.teams-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.team-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 150px;
+}
+
+.team-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+
+/* Players */
+
+/* src/App.css */
+.players-container {
+  padding: 20px;
+}
+
+.players-container form {
+  margin-bottom: 30px;
+}
+
+.players-container form div {
+  margin-bottom: 15px;
+}
+
+.players-container form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.players-container form input,
+.players-container form select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.players-container button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.players-container button:hover {
+  background-color: #218838;
+}
+
+.players-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.player-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 200px;
+}
+
+.player-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Matches */
+
+/* src/App.css */
+.matches-container {
+  padding: 20px;
+}
+
+.matches-container form {
+  margin-bottom: 30px;
+}
+
+.matches-container form div {
+  margin-bottom: 15px;
+}
+
+.matches-container form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.matches-container form input,
+.matches-container form select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.matches-container button {
+  padding: 10px 20px;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.matches-container button:hover {
+  background-color: #138496;
+}
+
+.matches-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.match-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 250px;
+}
+
+.match-card a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.match-card a:hover {
+  text-decoration: underline;
+}
+
+
+/* MatchView */
+/* src/App.css */
+.match-view-container {
+  padding: 20px;
+}
+
+.court-and-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.court {
+  width: 60%;
+  height: 400px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  position: relative;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.players-available {
+  width: 35%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 400px;
+  overflow-y: auto;
+  background-color: #f1f1f1;
+}
+
+.players-available h3 {
+  text-align: center;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.popup h3 {
+  margin-top: 0;
+}
+
+.popup div {
+  margin-bottom: 15px;
+}
+
+.popup label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.popup select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.popup button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background-color: #0056b3;
+}
+
+
+/* DraggablePlayer */
+/* src/App.css */
+.draggable-player {
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: grab;
+}
+
+.draggable-player:active {
+  cursor: grabbing;
+}
+
+/* Plays inside matchview */
+
+.play-container{
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0.5em auto;
+  padding: 0.2em 1em; 
+}
+
+
+/* scoreboard-container */
+.scoreboard-container{
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid;
+  padding: 1em;
+}
+

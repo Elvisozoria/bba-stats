@@ -1,15 +1,34 @@
+- mostrar total de anotacion
+- vista de edicion
+- estilizar lista de jugadas para que se aliniee de un lado la de cada equipo
+- hacer vista para equipo, jugador, play. para el single de cada uno que se pueda entrar desde el id
+- subir y mostrar imagenes
+- agregar acciones
+  - tiro libre luego de anotar una falta
+  - falta tecnica 
+- cambiar medidas a unidades imperiales
+- dividir archivos css
 - Configurar Active Storage en el Frontend
 - active storage con s3
 - notificaciones para todos los jugadores
-- agregar acciones
-- agregar secciones de la cancha
-- usar serializer?
 - configurar smtp 
-
-4.3. Desarrollo del Frontend (React)
+- modificar el nombre de todos los archivos y acciones de 'actions' a plays
+- quitar dropdown de popup de acciones y en su lugar poner opciones en lista
+- buscar otras formas de disminuir clicks
+- agregar confirmacion visual al agregar una accion al anotar
+- ir mostrando acciones segun el tiempo del video mientras se mira para revision, asi se puede validar que esta correcto
 
 
 ---- hechas
+- mostrar lista de acciones
+- dividir listado de jugadores disponibles en la anotacion en dos tablas, una para cada equipo
+- arreglar arrastrar y soltar
 - confiurar reglas de pudin para otros modelos (solo hice match)
 - configurar controladores para otros recursos (solo hice teams)
 - eliminar uso de sesiones con devise
+- url correcta para el login
+- instancia base de axios para las urls
+- usar serializer
+- importar css
+- mostrar menu superior
+- agregar secciones de la cancha
