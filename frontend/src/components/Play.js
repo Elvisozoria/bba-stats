@@ -82,7 +82,7 @@ const Play = ({play_id}) => {
   }
 
   return (
-    <div className="play-container">
+    <div className={"play-container"}>
       <p>{playerName} ha {playType} desde {courtSection} en el minuto {timestamp} </p>
     </div>
   );
