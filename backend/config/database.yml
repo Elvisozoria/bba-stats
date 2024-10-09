@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: baloncesto_user
+  password: "bba2025"
+  pool: 5
+
+development:
+  <<: *default
+  database: baloncesto_app_development
+
+test:
+  <<: *default
+  database: baloncesto_app_test
+
+production:
+  <<: *default
+  database: baloncesto_app_production
+  username: baloncesto_app
+  password: <%= ENV['BALONCESTO_APP_DATABASE_PASSWORD'] %>
