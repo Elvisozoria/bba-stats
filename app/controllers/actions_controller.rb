@@ -5,7 +5,7 @@ class ActionsController < ApplicationController
   # GET /actions
   def index
     @actions = policy_scope(Action).includes(:player, :assisted_by_player, :fouled_player)
-    render json: @actions, include: [:player, :assisted_by_player, :fouled_player]
+    render json: @actions.two_points, include: [:player, :assisted_by_player, :fouled_player]
   end
 
   # GET /actions/:id
@@ -16,8 +16,10 @@ class ActionsController < ApplicationController
 
   # POST /actions
   def create
+    # binding.pry
     @action = Action.new(action_params)
     authorize @action
+    @action.team_id = @action.player.team.id
 
     if @action.save
       render json: @action, status: :created, location: @action
@@ -43,6 +45,7 @@ class ActionsController < ApplicationController
     head :no_content
   end
 
+
   private
 
   def set_action
@@ -50,6 +53,7 @@ class ActionsController < ApplicationController
   end
 
   def action_params
-    params.require(:action).permit(:match_id, :player_id, :action_type, :timestamp, :section, :quarter, :assisted_by_player_id, :fouled_player_id)
+    # cambie el requide de :action a :play porque action es una palabra reservada de rails, debo de cambiar todo lo que se llama actions por plays
+    params.require(:play).permit(:match_id, :player_id, :action_type, :timestamp, :section, :quarter, :assisted_by_player_id, :fouled_player_id)
   end
 end

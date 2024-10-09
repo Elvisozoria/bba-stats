@@ -12,6 +12,7 @@ gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise-jwt'
 gem 'pry'
+gem 'dotenv'
 
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_16_001727) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_16_211350) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,10 +25,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_16_001727) do
     t.bigint "fouled_player_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "team_id", default: 1, null: false
     t.index ["assisted_by_player_id"], name: "index_actions_on_assisted_by_player_id"
     t.index ["fouled_player_id"], name: "index_actions_on_fouled_player_id"
     t.index ["match_id"], name: "index_actions_on_match_id"
     t.index ["player_id"], name: "index_actions_on_player_id"
+    t.index ["team_id"], name: "index_actions_on_team_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -60,8 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_16_001727) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.bigint "team_home_id", null: false
-    t.bigint "team_away_id", null: false
+    t.bigint "home_team_id", null: false
+    t.bigint "away_team_id", null: false
     t.datetime "date", null: false
     t.string "youtube_link", null: false
     t.bigint "technical_manager_id", null: false
@@ -69,8 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_16_001727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["anotador_id"], name: "index_matches_on_anotador_id"
-    t.index ["team_away_id"], name: "index_matches_on_team_away_id"
-    t.index ["team_home_id"], name: "index_matches_on_team_home_id"
+    t.index ["away_team_id"], name: "index_matches_on_away_team_id"
+    t.index ["home_team_id"], name: "index_matches_on_home_team_id"
     t.index ["technical_manager_id"], name: "index_matches_on_technical_manager_id"
   end
 
@@ -118,10 +120,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_16_001727) do
   add_foreign_key "actions", "players"
   add_foreign_key "actions", "players", column: "assisted_by_player_id"
   add_foreign_key "actions", "players", column: "fouled_player_id"
+  add_foreign_key "actions", "teams"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "matches", "teams", column: "team_away_id"
-  add_foreign_key "matches", "teams", column: "team_home_id"
+  add_foreign_key "matches", "teams", column: "away_team_id"
+  add_foreign_key "matches", "teams", column: "home_team_id"
   add_foreign_key "matches", "users", column: "anotador_id"
   add_foreign_key "matches", "users", column: "technical_manager_id"
   add_foreign_key "players", "teams"

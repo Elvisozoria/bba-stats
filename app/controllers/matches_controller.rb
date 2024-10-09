@@ -1,17 +1,17 @@
 # app/controllers/matches_controller.rb
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :update, :destroy]
+  before_action :set_match, only: [:show, :update, :destroy, :get_match_score]
 
   # GET /matches
   def index
-    @matches = policy_scope(Match).includes(:team_home, :team_away, :technical_manager, :anotador)
-    render json: @matches, include: [:team_home, :team_away, :technical_manager, :anotador]
+    @matches = policy_scope(Match).includes(:home_team, :away_team, :technical_manager, :anotador)
+    render json: @matches, include: [:home_team, :away_team, :technical_manager, :anotador]
   end
 
   # GET /matches/:id
   def show
     authorize @match
-    render json: @match, include: [:team_home, :team_away, :technical_manager, :anotador, :actions]
+    render json: @match, include: [:home_team, :away_team, :technical_manager, :anotador, :actions, :actions]
   end
 
   # POST /matches
@@ -44,6 +44,12 @@ class MatchesController < ApplicationController
     head :no_content
   end
 
+  #GET /match/:id/score
+  def get_match_score
+    # authorize @match
+    render json: @match.total_points
+  end
+
   private
 
   def set_match
@@ -51,6 +57,6 @@ class MatchesController < ApplicationController
   end
 
   def match_params
-    params.require(:match).permit(:team_home_id, :team_away_id, :date, :youtube_link, :technical_manager_id, :anotador_id)
+    params.require(:match).permit(:home_team_id, :away_team_id, :date, :youtube_link, :technical_manager_id, :anotador_id)
   end
 end
