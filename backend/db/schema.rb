@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_16_211350) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_09_192427) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,28 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_16_211350) do
     t.index ["technical_manager_id"], name: "index_matches_on_technical_manager_id"
   end
 
+  create_table "player_match_stats", force: :cascade do |t|
+    t.bigint "match_id", null: false
+    t.bigint "player_id", null: false
+    t.integer "points"
+    t.integer "field_goals_made"
+    t.integer "field_goals_attempted"
+    t.integer "free_throws_made"
+    t.integer "free_throws_attempted"
+    t.integer "three_points_made"
+    t.integer "three_points_attempted"
+    t.integer "rebounds_offensive"
+    t.integer "rebounds_defensive"
+    t.integer "assists"
+    t.integer "steals"
+    t.integer "blocks"
+    t.integer "turnovers"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_player_match_stats_on_match_id"
+    t.index ["player_id"], name: "index_player_match_stats_on_player_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.bigint "team_id", null: false
@@ -127,6 +149,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_16_211350) do
   add_foreign_key "matches", "teams", column: "home_team_id"
   add_foreign_key "matches", "users", column: "anotador_id"
   add_foreign_key "matches", "users", column: "technical_manager_id"
+  add_foreign_key "player_match_stats", "matches"
+  add_foreign_key "player_match_stats", "players"
   add_foreign_key "players", "teams"
   add_foreign_key "users", "players"
 end

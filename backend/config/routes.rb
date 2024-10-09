@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :update, :destroy]
 
   get '/matches/:id/score', to: 'matches#get_match_score'
+  get '/matches/:id/player_match_stats', to: 'player_match_stats#index'
+
 
   devise_scope :user do
     get '/validate_token', to: 'devise/sessions#validate_token'

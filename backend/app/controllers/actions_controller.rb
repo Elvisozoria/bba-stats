@@ -16,17 +16,16 @@ class ActionsController < ApplicationController
 
   # POST /actions
   def create
-    # binding.pry
     @action = Action.new(action_params)
     authorize @action
     @action.team_id = @action.player.team.id
-
+  
     if @action.save
       render json: @action, status: :created, location: @action
     else
       render json: @action.errors, status: :unprocessable_entity
     end
-  end
+  end  
 
   # PATCH/PUT /actions/:id
   def update
@@ -57,3 +56,5 @@ class ActionsController < ApplicationController
     params.require(:play).permit(:match_id, :player_id, :action_type, :timestamp, :section, :quarter, :assisted_by_player_id, :fouled_player_id)
   end
 end
+
+

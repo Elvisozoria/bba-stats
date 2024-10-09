@@ -5,6 +5,8 @@ class Match < ApplicationRecord
   belongs_to :anotador, class_name: 'User'
 
   has_many :actions, dependent: :destroy
+  has_many :player_match_stats, dependent: :destroy
+
 
   validates :date, presence: true
   validates :youtube_link, presence: true

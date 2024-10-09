@@ -5,19 +5,10 @@ class Action < ApplicationRecord
   belongs_to :assisted_by_player, class_name: 'Player', optional: true
   belongs_to :fouled_player, class_name: 'Player', optional: true
 
+  after_save :update_player_match_stats
+  after_destroy :revert_player_match_stats
+
   ACTION_TYPES = %w[tiro_encestado tiro_fallado falta_personal falta_recibida asistencia perdida_de_balon].freeze
-  # SECTIONS = %w[triple_centro triple_derecha triple_izquierda tiro_libre bajo_aro].freeze
-
-  # validates :action_type, presence: true, inclusion: { in: ACTION_TYPES }
-  # validates :section, presence: true, inclusion: { in: SECTIONS }
-  validates :timestamp, presence: true
-  validates :quarter, presence: true, numericality: { only_integer: true, greater_than: 0 }
-
-  # scope :two_points, -> {where (section:"section2")}
-  scope :two_points, -> { where(action_type:"tiro_encestado").where(section: ["section2", "section3", "section4", "section5", "section6", "section9", "section11", "section6"]) }
-  scope :three_points, -> { where(action_type:"tiro_encestado").where(section: ["section1", "section7", "section8", "section10", "section12", "section13"]) }
-  scope :one_point, -> {where(action_type: "tiro_libre_encestado")}
-
 
   def self.total_team_points_on_match(team_id,match)
     
@@ -29,4 +20,83 @@ class Action < ApplicationRecord
 
   end
 
+  # Este método actualizará las estadísticas del jugador
+  def update_player_match_stats
+    player_stat = PlayerMatchStat.find_or_create_by(match: match, player: player)
+
+    case action_type
+    when 'tiro_encestado'
+      if section.include?('triple')  # si es un tiro de tres puntos
+        player_stat.three_points_made += 1
+        player_stat.points += 3
+      else # cualquier otro tiro
+        player_stat.field_goals_made += 1
+        player_stat.points += 2
+      end
+      player_stat.field_goals_attempted += 1
+    when 'tiro_fallado'
+      player_stat.field_goals_attempted += 1
+    when 'tiro_libre_encestado'
+      player_stat.free_throws_made += 1
+      player_stat.free_throws_attempted += 1
+      player_stat.points += 1
+    when 'tiro_libre_fallado'
+      player_stat.free_throws_attempted += 1
+    when 'rebote_ofensivo'
+      player_stat.rebounds_offensive += 1
+    when 'rebote_defensivo'
+      player_stat.rebounds_defensive += 1
+    when 'asistencia'
+      player_stat.assists += 1
+    when 'robo'
+      player_stat.steals += 1
+    when 'bloqueo'
+      player_stat.blocks += 1
+    when 'perdida_de_balon'
+      player_stat.turnovers += 1
+    end
+
+    player_stat.save
+  end
+
+  # Este método revertirá las estadísticas en caso de eliminar la acción
+  def revert_player_match_stats
+    player_stat = PlayerMatchStat.find_by(match: match, player: player)
+    return unless player_stat
+
+    case action_type
+    when 'tiro_encestado'
+      if section.include?('triple')
+        player_stat.three_points_made -= 1
+        player_stat.points -= 3
+      else
+        player_stat.field_goals_made -= 1
+        player_stat.points -= 2
+      end
+      player_stat.field_goals_attempted -= 1
+    when 'tiro_fallado'
+      player_stat.field_goals_attempted -= 1
+    when 'tiro_libre_encestado'
+      player_stat.free_throws_made -= 1
+      player_stat.free_throws_attempted -= 1
+      player_stat.points -= 1
+    when 'tiro_libre_fallado'
+      player_stat.free_throws_attempted -= 1
+    when 'rebote_ofensivo'
+      player_stat.rebounds_offensive -= 1
+    when 'rebote_defensivo'
+      player_stat.rebounds_defensive -= 1
+    when 'asistencia'
+      player_stat.assists -= 1
+    when 'robo'
+      player_stat.steals -= 1
+    when 'bloqueo'
+      player_stat.blocks -= 1
+    when 'perdida_de_balon'
+      player_stat.turnovers -= 1
+    end
+
+    player_stat.save
+  end
 end
+
