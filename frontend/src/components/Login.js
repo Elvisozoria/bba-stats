@@ -6,7 +6,7 @@ import axiosInstance from './../api/axiosInstance';
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState'');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,7 +19,7 @@ const Login = () => {
       navigate('/');
     } catch (error) {
       console.error('Error de autenticación', error);
-      alert('Credenciales inválidas');
+      alert('Credenciales inválidas')brok;
     }
   };
 
